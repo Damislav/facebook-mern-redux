@@ -4,8 +4,8 @@ const cors = require("cors");
 const { readdirSync } = require("fs");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
-require("dotenv").config();
-
+const dotenv = require("dotenv");
+dotenv.config();
 // options
 const options = {
   origin: "http://localhost:3100",
@@ -18,7 +18,7 @@ app.use(morgan("dev"));
 
 //  DATABASE
 mongoose
-  .connect(process.env.DATABASE, { useNewUrlParser: true })
+  .connect(process.env.DATABASE_URL, { useNewUrlParser: true })
   .then(() => {
     console.log("Connected to database");
   })
