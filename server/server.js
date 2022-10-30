@@ -5,10 +5,11 @@ const { readdirSync } = require("fs");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
+
 dotenv.config();
 // options
 const options = {
-  origin: "http://localhost:3100",
+  origin: "http://localhost:3000",
   useSuccessStatus: 200,
 };
 // middlewarw
