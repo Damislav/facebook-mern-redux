@@ -73,7 +73,7 @@ exports.register = async (req, res) => {
       "30m"
     );
     const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
-    
+
     sendVerificationEmail(user.email, user.first_name, url);
     const token = generateToken({ id: user._id.toString() }, "7d");
     res.send({
@@ -139,4 +139,9 @@ exports.login = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+exports.auth = async (req, res) => {
+  // console.log(req.user);
+  res.send("Welecome from auth");
 };
