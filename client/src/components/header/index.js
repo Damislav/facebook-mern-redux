@@ -19,7 +19,6 @@ import { useRef, useState } from "react";
 import AllMenu from "./AllMenu";
 import useClickOutside from "../../helpers/clickOutside";
 import UserMenu from "./userMenu";
-
 export default function Header() {
   const { user } = useSelector((user) => ({ ...user }));
   const color = "#65676b";
@@ -73,7 +72,7 @@ export default function Header() {
         <Link to="/" className="middle_icon hover1">
           <Market color={color} />
         </Link>
-        <Link to="/" className="middle_icon hover1">
+        <Link to="/" className="middle_icon hover1 ">
           <Gaming color={color} />
         </Link>
       </div>
