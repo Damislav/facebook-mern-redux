@@ -6,6 +6,7 @@ import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 import { useSelector } from "react-redux";
 import Activate from "./pages/home/activate";
+import Reset from "./pages/reset";
 
 function App() {
   const { user } = useSelector((state) => ({ ...state }));
@@ -20,6 +21,7 @@ function App() {
         <Route element={<NotLoggedInRoutes />}>
           <Route path="/login" element={<Login />} exact />
         </Route>
+        <Route path="/reset" element={<Reset />} />
       </Routes>
     </div>
   );
