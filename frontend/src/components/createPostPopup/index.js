@@ -4,17 +4,20 @@ import Picker from "emoji-picker-react";
 import EmojiPickerBackgrounds from "./EmojiPickerBackgrounds";
 import AddToYourPost from "./AddToYourPost";
 import ImagePreview from "./ImagePreview";
-export default function CreatePostPopup({ user }) {
+import { RxCross2 } from "react-icons/rx";
+export default function CreatePostPopup({ user, setOpen, open }) {
   const [text, setText] = useState("");
-  const [showPrev, setShowPrev] = useState(true);
+  const [showPrev, setShowPrev] = useState(false);
   const [images, setImages] = useState([]);
 
   return (
     <div className="blur">
       <div className="postBox">
         <div className="box_header">
-          <div className="small_circle">
-            <i className="exit_icon"></i>
+          <div onClick={() => setOpen(!open)} className="small_circle">
+            <i className="exit_icon">
+              <RxCross2 />
+            </i>
           </div>
           <span>Create Post</span>
         </div>
@@ -27,7 +30,7 @@ export default function CreatePostPopup({ user }) {
             <div className="box_privacy">
               <img src="../../../icons/public.png" alt="" />
               <span>Public</span>
-              <i className="arrowDown_icon"></i>
+              <i className="arrowDown_icon"> </i>
             </div>
           </div>
         </div>
@@ -47,9 +50,11 @@ export default function CreatePostPopup({ user }) {
             user={user}
             setText={setText}
             showPrev={showPrev}
+            images={images}
+            setImages={setImages}
           />
         )}
-        <AddToYourPost />
+        <AddToYourPost setShowPrev={setShowPrev} />
         <button className="post_submit">Post</button>
       </div>
     </div>

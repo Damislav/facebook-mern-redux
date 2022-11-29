@@ -459,7 +459,7 @@
 }
 .exit_icon {
   background-image: url("../../../public/icons/icons6.png");
-  background-position: -126px -71px;
+  background-position: -126px -71px !important;
   background-size: auto;
   width: 20px;
   height: 20px;
