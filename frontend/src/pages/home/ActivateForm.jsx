@@ -1,5 +1,4 @@
 import PropagateLoader from "react-spinners/PropagateLoader";
-
 export default function ActivateForm({ type, header, text, loading }) {
   return (
     <div className="blur">
