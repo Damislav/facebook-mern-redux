@@ -1,33 +1,33 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
 const { readdirSync } = require("fs");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
-
 dotenv.config();
-// options
-const options = {
-  origin: "http://localhost:3000",
-  useSuccessStatus: 200,
-};
-// middlewarw
-app.use(cors(options));
+
+// middleware
 app.use(express.json());
+app.use(cors());
+app.use(
+  fileUpload({
+    useTempFiles: true,
+  })
+);
 app.use(morgan("dev"));
 
-//  DATABASE
-mongoose
-  .connect(process.env.DATABASE_URL, { useNewUrlParser: true })
-  .then(() => {
-    console.log("Connected to database");
-  })
-  .catch((err) => {
-    console.log("Error connecting to database");
-  });
 // routes
 readdirSync("./routes").map((r) => app.use("/", require("./routes/" + r)));
+
+//database
+mongoose
+  .connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+  })
+  .then(() => console.log("database connected successfully"))
+  .catch((err) => console.log("error connecting to mongodb", err));
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {

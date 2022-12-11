@@ -11,17 +11,18 @@ import CreatePostPopup from "./components/createPostPopup";
 import { useState } from "react";
 
 function App() {
+  const [visible, setVisible] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
-  const [open, setOpen] = useState(true);
+
   return (
     <div>
-      {open && <CreatePostPopup setOpen={setOpen} open={open} user={user} />}
+      {visible && <CreatePostPopup user={user} setVisible={setVisible} />}
       <Routes>
         <Route element={<LoggedInRoutes />}>
           <Route path="/profile" element={<Profile />} exact />
           <Route
             path="/"
-            element={<Home open={open} setOpen={setOpen} />}
+            element={<Home visible={visible} setVisible={setVisible} />}
             exact
           />
           <Route path="/activate/:token" element={<Activate />} exact />
