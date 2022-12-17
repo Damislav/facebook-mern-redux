@@ -1,19 +1,26 @@
 import axios from "axios";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { profileReducer } from "../../functions/reducers";
-import Header from "../../components/header/index";
-import Cover from "./Cover";
+import Header from "../../components/header";
 import "./style.css";
+import Cover from "./Cover";
+import ProfielPictureInfos from "./ProfielPictureInfos";
 import ProfileMenu from "./ProfileMenu";
-import ProfilePictureInfos from "./ProfilePictureInfos";
+import PplYouMayKnow from "./PplYouMayKnow";
+import CreatePost from "../../components/createPost";
+import GridPosts from "./GridPosts";
+import Post from "../../components/post";
+import Photos from "./Photos";
+import Friends from "./Friends";
 
-export default function Profile() {
+export default function Profile({ setVisible }) {
   const { username } = useParams();
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
   var userName = username === undefined ? user.username : username;
+
   const [{ loading, error, profile }, dispatch] = useReducer(profileReducer, {
     loading: false,
     profile: {},
@@ -22,7 +29,9 @@ export default function Profile() {
   useEffect(() => {
     getProfile();
   }, [userName]);
-  
+  var visitor = userName === user.username ? false : true;
+  console.log(visitor);
+
   const getProfile = async () => {
     try {
       dispatch({
@@ -56,9 +65,53 @@ export default function Profile() {
       <Header page="profile" />
       <div className="profile_top">
         <div className="profile_container">
-          <Cover cover={profile.cover} />
-          <ProfilePictureInfos profile={profile} />
+          <Cover cover={profile.cover} visitor={visitor} />
+          <ProfielPictureInfos profile={profile} visitor={visitor} />
           <ProfileMenu />
+        </div>
+      </div>
+      <div className="profile_bottom">
+        <div className="profile_container">
+          <div className="bottom_container">
+            <PplYouMayKnow />
+            <div className="profile_grid">
+              <div className="profile_left">
+                <Photos username={userName} token={user.token} />
+                <Friends friends={profile.friends} />
+                <div className="relative_fb_copyright">
+                  <Link to="/">Privacy </Link>
+                  <span>. </span>
+                  <Link to="/">Terms </Link>
+                  <span>. </span>
+                  <Link to="/">Advertising </Link>
+                  <span>. </span>
+                  <Link to="/">
+                    Ad Choices <i className="ad_choices_icon"></i>{" "}
+                  </Link>
+                  <span>. </span>
+                  <Link to="/"></Link>Cookies <span>. </span>
+                  <Link to="/">More </Link>
+                  <span>. </span> <br />
+                  Meta © 2022
+                </div>
+              </div>
+              <div className="profile_right">
+                {!visitor && (
+                  <CreatePost user={user} profile setVisible={setVisible} />
+                )}
+                <GridPosts />
+                <div className="posts">
+                  {profile.posts && profile.posts.length ? (
+                    profile.posts.map((post) => (
+                      <Post post={post} user={user} key={post._id} profile />
+                    ))
+                  ) : (
+                    <div className="no_posts">No posts available</div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

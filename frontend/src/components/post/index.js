@@ -6,10 +6,10 @@ import ReactsPopup from "./ReactsPopup";
 import { useState } from "react";
 import CreateComment from "./CreateComment";
 import PostMenu from "./PostMenu";
-
 export default function Post({ post, user }) {
   const [visible, setVisible] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+
   return (
     <div className="post">
       <div className="post_header">

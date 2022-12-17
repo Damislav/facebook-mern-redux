@@ -11,6 +11,9 @@ const cloudinary = require("cloudinary");
 const { generateToken } = require("../helpers/tokens");
 const { sendVerificationEmail, sendResetCode } = require("../helpers/mailer");
 const generateCode = require("../helpers/generateCode");
+
+const Post = require("../models/Post");
+
 exports.register = async (req, res) => {
   try {
     const {
@@ -241,7 +244,8 @@ exports.getProfile = async (req, res) => {
     if (!profile) {
       return res.json({ ok: false });
     }
-    res.json(profile);
+    const posts = await Post.find({ user: profile._id }).populate("user");
+    res.json({ ...profile.toObject(), posts });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
