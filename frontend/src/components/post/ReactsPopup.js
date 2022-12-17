@@ -1,4 +1,3 @@
-
 const reactsArray = [
   {
     name: "like",

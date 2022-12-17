@@ -5,10 +5,11 @@ import { Dots, Public } from "../../svg";
 import ReactsPopup from "./ReactsPopup";
 import { useState } from "react";
 import CreateComment from "./CreateComment";
+import PostMenu from "./PostMenu";
 
 export default function Post({ post, user }) {
   const [visible, setVisible] = useState(false);
-
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <div className="post">
       <div className="post_header">
@@ -39,7 +40,10 @@ export default function Post({ post, user }) {
             </div>
           </div>
         </Link>
-        <div className="post_header_right hover1">
+        <div
+          className="post_header_right hover1"
+          onClick={() => setShowMenu((prev) => !prev)}
+        >
           <Dots color="#828387" />
         </div>
       </div>
@@ -120,6 +124,14 @@ export default function Post({ post, user }) {
         <div className="comments_order"></div>
         <CreateComment user={user} />
       </div>
+      {showMenu && (
+        <PostMenu
+          userId={user.id}
+          postUserId={post.user._id}
+          imagesLength={post?.images?.length}
+          setShowMenu={setShowMenu}
+        />
+      )}
     </div>
   );
 }

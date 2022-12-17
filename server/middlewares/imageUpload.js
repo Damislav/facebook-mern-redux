@@ -1,5 +1,4 @@
 const fs = require("fs");
-
 module.exports = async function (req, res, next) {
   try {
     if (!req.files || Object.values(req.files).flat().length === 0) {
@@ -23,6 +22,7 @@ module.exports = async function (req, res, next) {
     });
     next();
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: error.message });
   }
 };
