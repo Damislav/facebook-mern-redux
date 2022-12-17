@@ -416,29 +416,3 @@
     width: 100%;
   }
 }
-
-/* icons */
-.maps_icon {
-  background-size: auto;
-  font-size: 1.8rem;
-  background-repeat: no-repeat;
-  display: inline-block;
-}
-.tag_icon {
-  display: flex;
-  align-items: center;
-  align-items: center;
-  font-size: 1.5rem;
-  color: var(--blue-color);
-}
-.microphone_icon {
-  display: flex;
-  align-items: center;
-  align-items: center;
-  font-size: 1.5rem;
-  color: red;
-}
-.exit_icon {
-  display: flex;
-  align-items: center;
-}

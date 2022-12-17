@@ -11,7 +11,6 @@ import { useDispatch } from "react-redux";
 import PostError from "./PostError";
 import dataURItoBlob from "../../helpers/dataURItoBlob";
 import { uploadImages } from "../../functions/uploadImages";
-
 export default function CreatePostPopup({ user, setVisible }) {
   const dispatch = useDispatch();
   const popup = useRef(null);
@@ -21,11 +20,9 @@ export default function CreatePostPopup({ user, setVisible }) {
   const [error, setError] = useState("");
   const [images, setImages] = useState([]);
   const [background, setBackground] = useState("");
-
   useClickOutside(popup, () => {
     setVisible(false);
   });
-
   const postSubmit = async () => {
     if (background) {
       setLoading(true);
@@ -38,7 +35,6 @@ export default function CreatePostPopup({ user, setVisible }) {
         user.token
       );
       setLoading(false);
-
       if (response === "ok") {
         setBackground("");
         setText("");
@@ -97,7 +93,6 @@ export default function CreatePostPopup({ user, setVisible }) {
       console.log("nothing");
     }
   };
-
   return (
     <div className="blur">
       <div className="postBox" ref={popup}>
