@@ -2,7 +2,7 @@ header {
   position: fixed;
   top: 0;
   height: 56px;
-  z-index: 99;
+  z-index: 9999999999999;
   background: var(--bg-primary);
   width: 100%;
   box-shadow: 1px 8px 15px -7px var(--shadow-2);
