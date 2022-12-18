@@ -20,9 +20,12 @@ function App() {
     posts: [],
     error: "",
   });
+
   useEffect(() => {
     getAllPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const getAllPosts = async () => {
     try {
       dispatch({

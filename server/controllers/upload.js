@@ -38,13 +38,12 @@ exports.listImages = async (req, res) => {
       console.log(err.error.message);
     });
 };
-
 const uploadToCloudinary = async (file, path) => {
   return new Promise((resolve) => {
     cloudinary.v2.uploader.upload(
       file.tempFilePath,
       {
-        folder: path,
+        folder: "facebook/" + path,
       },
       (err, res) => {
         if (err) {
@@ -58,7 +57,6 @@ const uploadToCloudinary = async (file, path) => {
     );
   });
 };
-
 const removeTmp = (path) => {
   fs.unlink(path, (err) => {
     if (err) throw err;

@@ -18,6 +18,13 @@
   border-bottom-right-radius: 8px;
   background: var(--bg-secondary);
 }
+.cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
 .udpate_cover_wrapper {
   position: absolute;
   bottom: 1rem;
@@ -48,7 +55,7 @@
   border-radius: 10px;
   box-shadow: 0 12px 28px 0 var(--shadow-1), 0 2px 4px 0 var(--shadow-2),
     inset 0 0 0 px var(--shadow-inset);
-  z-index: 99;
+  z-index: 99999;
 }
 .open_cover_menu_item {
   display: flex;
@@ -75,6 +82,7 @@
 }
 .profile_w_img {
   position: relative;
+  z-index: 9999;
 }
 .profile_w_bg {
   width: 180px;
@@ -317,6 +325,56 @@
   object-fit: cover;
   border-radius: 10px;
 }
+.cover_crooper {
+  height: 100%;
+}
+.cover_crooper img {
+  object-fit: cover;
+  width: 100%;
+}
+.cover_crooper .reactEasyCrop_Container {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.save_changes_cover {
+  z-index: 999999999;
+  position: fixed;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-primary);
+}
+.save_changes_left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+.save_changes_left i {
+  filter: invert(100%);
+}
+.save_changes_right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.save_changes_right button {
+  padding: 10px;
+}
+.save_changes_right button:first-of-type {
+  width: 100px;
+  background: #39393f;
+}
+.save_changes_right button:last-of-type {
+  width: 160px;
+}
+
 /*-----profile card--------*/
 @media (max-width: 900px) {
   .profile_w_left {
