@@ -560,10 +560,14 @@ header {
     display: none;
   }
   .mmenu {
-    width: 340px;
+    width: 290px;
   }
   .all_menu {
-    left: -12.5rem;
+    width: 310px;
+    left: -10rem;
+  }
+  .search_area {
+    width: 310px;
   }
 }
 /*---responsive----------*/

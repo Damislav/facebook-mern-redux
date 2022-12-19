@@ -55,11 +55,13 @@
   filter: invert(40%);
 }
 .infosBox {
-  height: 82vh;
-  width: 800px;
+  height: 650px;
+  width: 800px !important;
 }
 .details_wrapper {
   padding: 1rem;
+  overflow-y: auto;
+  height: 75vh;
 }
 .details_col {
   display: flex;
@@ -88,15 +90,27 @@
   font-size: 14px;
   cursor: pointer;
 }
-.add_details_flex:hover {
-  text-decoration: underline;
-}
+
 .add_details_flex .edit_icon {
   position: absolute;
   right: 1rem;
   cursor: pointer;
   transform: scale(1.1);
 }
-.no_underline:hover {
-  text-decoration: none;
+.underline:hover {
+  text-decoration: underline;
+}
+.select_rel {
+  height: 30px;
+  outline: none;
+  border: none;
+  background: var(--bg-secondary);
+  margin: 10px 0;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+@media (max-width: 810px) {
+  .infosBox {
+    width: 96% !important;
+  }
 }

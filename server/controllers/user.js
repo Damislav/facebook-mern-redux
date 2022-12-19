@@ -263,6 +263,7 @@ exports.updateProfilePicture = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 exports.updateCover = async (req, res) => {
   try {
     const { url } = req.body;
@@ -275,10 +276,11 @@ exports.updateCover = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 exports.updateDetails = async (req, res) => {
   try {
     const { infos } = req.body;
-    const updated = await User.findOneAndUpdate(
+    const updated = await User.findByIdAndUpdate(
       req.user.id,
       {
         details: infos,
