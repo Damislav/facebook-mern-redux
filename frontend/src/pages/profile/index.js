@@ -16,7 +16,6 @@ import Photos from "./Photos";
 import Friends from "./Friends";
 import Intro from "../../components/intro";
 import { useMediaQuery } from "react-responsive";
-
 export default function Profile({ setVisible }) {
   const { username } = useParams();
   const navigate = useNavigate();
@@ -29,11 +28,9 @@ export default function Profile({ setVisible }) {
     profile: {},
     error: "",
   });
-
   useEffect(() => {
     getProfile();
   }, [userName]);
-
   useEffect(() => {
     setOthername(profile?.details?.otherName);
   }, [profile]);
@@ -91,7 +88,6 @@ export default function Profile({ setVisible }) {
   const [height, setHeight] = useState();
   const [leftHeight, setLeftHeight] = useState();
   const [scrollHeight, setScrollHeight] = useState();
-
   useEffect(() => {
     setHeight(profileTop.current.clientHeight + 300);
     setLeftHeight(leftSide.current.clientHeight);
@@ -100,7 +96,6 @@ export default function Profile({ setVisible }) {
       window.addEventListener("scroll", getScroll, { passive: true });
     };
   }, [loading, scrollHeight]);
-
   const check = useMediaQuery({
     query: "(min-width:901px)",
   });
