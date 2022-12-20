@@ -321,6 +321,7 @@
   font-weight: 600;
   font-size: 14px;
   transform: translateY(-1px);
+  text-transform: capitalize;
 }
 .reacts_popup {
   display: flex;
