@@ -13,6 +13,12 @@ export default function Post({ post, user, profile }) {
   const [reacts, setReacts] = useState();
   const [check, setCheck] = useState();
   const [total, setTotal] = useState(0);
+  const [comments, setComments] = useState(post?.comements);
+
+  useEffect(() => {
+    setComments(post?.comments);
+  }, [post]);
+  console.log(comments);
   useEffect(() => {
     getPostReacts();
   }, [post]);
@@ -49,6 +55,7 @@ export default function Post({ post, user, profile }) {
       }
     }
   };
+
   return (
     <div className="post" style={{ width: `${profile && "100%"}` }}>
       <div className="post_header">
@@ -148,9 +155,13 @@ export default function Post({ post, user, profile }) {
                 })
                 .slice(0, 3)
                 .map(
-                  (react) =>
+                  (react, i) =>
                     react.count > 0 && (
-                      <img src={`../../../reacts/${react.react}.svg`} alt="" />
+                      <img
+                        key={i}
+                        src={`../../../reacts/${react.react}.svg`}
+                        alt=""
+                      />
                     )
                 )}
           </div>
@@ -227,7 +238,7 @@ export default function Post({ post, user, profile }) {
       </div>
       <div className="comments_wrap">
         <div className="comments_order"></div>
-        <CreateComment user={user} />
+        <CreateComment user={user} postId={post._id} />
       </div>
       {showMenu && (
         <PostMenu
@@ -240,4 +251,3 @@ export default function Post({ post, user, profile }) {
     </div>
   );
 }
- 
