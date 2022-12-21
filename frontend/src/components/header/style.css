@@ -465,6 +465,31 @@ header {
 }
 
 /*-------User menu----*/
+.search_results {
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.search_user_item {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.search_user_item img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.search_user_item span {
+  font-weight: 600;
+  font-size: 14px;
+}
 
 /*---responsive----------*/
 @media (max-width: 1295px) {

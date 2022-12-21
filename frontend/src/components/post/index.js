@@ -3,7 +3,7 @@ import "./style.css";
 import Moment from "react-moment";
 import { Dots, Public } from "../../svg";
 import ReactsPopup from "./ReactsPopup";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CreateComment from "./CreateComment";
 import PostMenu from "./PostMenu";
 import { comment, getReacts, reactPost } from "../../functions/post";
@@ -15,6 +15,7 @@ export default function Post({ post, user, profile }) {
   const [check, setCheck] = useState();
   const [total, setTotal] = useState(0);
   const [count, setCount] = useState(1);
+  const [checkSaved, setCheckSaved] = useState();
   const [comments, setComments] = useState([]);
   useEffect(() => {
     getPostReacts();
@@ -22,12 +23,13 @@ export default function Post({ post, user, profile }) {
   useEffect(() => {
     setComments(post?.comments);
   }, [post]);
-  console.log(comments);
+
   const getPostReacts = async () => {
     const res = await getReacts(post._id, user.token);
     setReacts(res.reacts);
     setCheck(res.check);
     setTotal(res.total);
+    setCheckSaved(res.checkSaved);
   };
 
   const reactHandler = async (type) => {
@@ -58,8 +60,13 @@ export default function Post({ post, user, profile }) {
   const showMore = () => {
     setCount((prev) => prev + 3);
   };
+  const postRef = useRef(null);
   return (
-    <div className="post" style={{ width: `${profile && "100%"}` }}>
+    <div
+      className="post"
+      style={{ width: `${profile && "100%"}` }}
+      ref={postRef}
+    >
       <div className="post_header">
         <Link
           to={`/profile/${post.user.username}`}
@@ -157,9 +164,13 @@ export default function Post({ post, user, profile }) {
                 })
                 .slice(0, 3)
                 .map(
-                  (react) =>
+                  (react, i) =>
                     react.count > 0 && (
-                      <img src={`../../../reacts/${react.react}.svg`} alt="" />
+                      <img
+                        src={`../../../reacts/${react.react}.svg`}
+                        alt=""
+                        key={i}
+                      />
                     )
                 )}
           </div>
@@ -261,6 +272,12 @@ export default function Post({ post, user, profile }) {
           postUserId={post.user._id}
           imagesLength={post?.images?.length}
           setShowMenu={setShowMenu}
+          postId={post._id}
+          token={user.token}
+          checkSaved={checkSaved}
+          setCheckSaved={setCheckSaved}
+          images={post.images}
+          postRef={postRef}
         />
       )}
     </div>

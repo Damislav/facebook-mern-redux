@@ -8,18 +8,16 @@ import SendVerification from "../../components/home/sendVerification";
 import Stories from "../../components/home/stories";
 import Post from "../../components/post";
 import "./style.css";
-export default function Home({ setVisible, posts }) {
+export default function Home({ setVisible, posts, loading, getAllPosts }) {
   const { user } = useSelector((state) => ({ ...state }));
   const middle = useRef(null);
   const [height, setHeight] = useState();
-
-  // fix white overflow
   useEffect(() => {
     setHeight(middle.current.clientHeight);
-  }, []);
+  }, [loading, height]);
   return (
     <div className="home" style={{ height: `${height + 150}px` }}>
-      <Header page="home" />
+      <Header page="home" getAllPosts={getAllPosts} />
       <LeftHome user={user} />
       <div className="home_middle" ref={middle}>
         <Stories />
