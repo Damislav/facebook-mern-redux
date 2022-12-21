@@ -485,6 +485,51 @@
   height: 100%;
   object-fit: cover;
 }
+/*----Comment-----------*/
+.comment {
+  display: flex;
+  gap: 5px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+.comment_img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.comment_image {
+  margin-top: 5px;
+  width: 200px;
+  height: 150px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.comment_wrap {
+  background: var(--bg-forth);
+  padding: 5px 15px;
+  border-radius: 50px;
+}
+.comment_actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-left: 10px;
+}
+.view_comments {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--color-secondary);
+}
+.view_comments:hover {
+  text-decoration: underline;
+}
+/*----Comment-----------*/
 /*------Post menu------*/
 @media (max-width: 435px) {
   .post .grid_2 img,
