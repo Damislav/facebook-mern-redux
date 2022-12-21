@@ -34,6 +34,7 @@ export default function Header({ page, getAllPosts }) {
   useClickOutside(usermenu, () => {
     setShowUserMenu(false);
   });
+
   return (
     <header>
       <div className="header_left">
