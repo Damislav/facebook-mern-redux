@@ -119,3 +119,6 @@
   font-size: 12px;
   color: var(--color-secondary);
 }
+.left_home .small_circle {
+  background: rgb(214, 214, 214);
+}

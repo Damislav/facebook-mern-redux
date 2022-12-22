@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 export default function RegisterForm({ setVisible }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const userInfos = {
     first_name: "",
     last_name: "",
@@ -35,12 +34,10 @@ export default function RegisterForm({ setVisible }) {
     gender,
   } = user;
   const yearTemp = new Date().getFullYear();
-
   const handleRegisterChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
-
   const years = Array.from(new Array(108), (val, index) => yearTemp - index);
   const months = Array.from(new Array(12), (val, index) => 1 + index);
   const getDays = () => {
@@ -97,7 +94,6 @@ export default function RegisterForm({ setVisible }) {
       const { message, ...rest } = data;
       setTimeout(() => {
         dispatch({ type: "LOGIN", payload: rest });
-        console.log(rest);
         Cookies.set("user", JSON.stringify(rest));
         navigate("/");
       }, 2000);

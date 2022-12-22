@@ -143,7 +143,7 @@ export default function Intro({ detailss, visitor, setOthername }) {
           <img src="../../../icons/instagram.png" alt="" />
           <a
             href={`https://www.instagram.com/${details?.instagram}`}
-            target="_blank" rel="noreferrer"
+            target="_blank"
           >
             {details?.instagram}
           </a>

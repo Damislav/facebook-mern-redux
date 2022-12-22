@@ -9,7 +9,7 @@ export default function LeftHome({ user }) {
   const [visible, setVisible] = useState(false);
   return (
     <div className="left_home scrollbar">
-      <Link to="/profile" className="left_link hover1">
+      <Link to="/profile" className="left_link hover2">
         <img src={user?.picture} alt="" />
         <span>
           {user?.first_name} {user.last_name}
@@ -25,7 +25,7 @@ export default function LeftHome({ user }) {
       ))}
       {!visible && (
         <div
-          className="left_link hover1"
+          className="left_link hover2"
           onClick={() => {
             setVisible(true);
           }}
@@ -47,7 +47,7 @@ export default function LeftHome({ user }) {
             />
           ))}
           <div
-            className="left_link hover1 "
+            className="left_link hover2 "
             onClick={() => {
               setVisible(false);
             }}
