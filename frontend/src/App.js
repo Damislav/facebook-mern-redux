@@ -11,6 +11,7 @@ import CreatePostPopup from "./components/createPostPopup";
 import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { postsReducer } from "./functions/reducers";
+import Friends from "./pages/friends";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -20,11 +21,9 @@ function App() {
     posts: [],
     error: "",
   });
-
   useEffect(() => {
     getAllPosts();
   }, []);
-  
   const getAllPosts = async () => {
     try {
       dispatch({
@@ -72,6 +71,20 @@ function App() {
             path="/profile/:username"
             element={
               <Profile setVisible={setVisible} getAllPosts={getAllPosts} />
+            }
+            exact
+          />
+          <Route
+            path="/friends"
+            element={
+              <Friends setVisible={setVisible} getAllPosts={getAllPosts} />
+            }
+            exact
+          />
+          <Route
+            path="/friends/:type"
+            element={
+              <Friends setVisible={setVisible} getAllPosts={getAllPosts} />
             }
             exact
           />
