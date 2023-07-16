@@ -7,6 +7,7 @@ cloudinary.config({
   api_key: process.env.CLOUD_API_KEY,
   api_secret: process.env.CLOUD_API_SECRET,
 });
+
 exports.uploadImages = async (req, res) => {
   try {
     const { path } = req.body;
@@ -23,6 +24,7 @@ exports.uploadImages = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
 exports.listImages = async (req, res) => {
   const { path, sort, max } = req.body;
 
@@ -38,6 +40,7 @@ exports.listImages = async (req, res) => {
       console.log(err.error.message);
     });
 };
+
 const uploadToCloudinary = async (file, path) => {
   return new Promise((resolve) => {
     cloudinary.v2.uploader.upload(
@@ -57,6 +60,7 @@ const uploadToCloudinary = async (file, path) => {
     );
   });
 };
+
 const removeTmp = (path) => {
   fs.unlink(path, (err) => {
     if (err) throw err;

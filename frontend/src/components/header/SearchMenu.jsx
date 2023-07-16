@@ -8,6 +8,7 @@ import {
   search,
 } from "../../functions/user";
 import { Link } from "react-router-dom";
+
 export default function SearchMenu({ color, setShowSearchMenu, token }) {
   const [iconVisible, setIconVisible] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");

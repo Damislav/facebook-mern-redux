@@ -1,6 +1,7 @@
 const React = require("../models/React");
 const User = require("../models/User");
 const mongoose = require("mongoose");
+
 exports.reactPost = async (req, res) => {
   try {
     const { postId, react } = req.body;
@@ -76,7 +77,9 @@ exports.getReacts = async (req, res) => {
       postRef: req.params.id,
       reactBy: req.user.id,
     });
+
     const user = await User.findById(req.user.id);
+
     const checkSaved = user?.savedPosts.find(
       (x) => x.post.toString() === req.params.id
     );

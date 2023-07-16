@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import axios from "axios";
+
 export default function SendVerification({ user }) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");

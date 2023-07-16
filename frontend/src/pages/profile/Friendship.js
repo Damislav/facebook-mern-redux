@@ -10,6 +10,7 @@ import {
   unfollow,
   unfriend,
 } from "../../functions/user";
+
 export default function Friendship({ friendshipp, profileid }) {
   const [friendship, setFriendship] = useState(friendshipp);
   useEffect(() => {

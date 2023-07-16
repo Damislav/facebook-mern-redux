@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import PostError from "./PostError";
 import dataURItoBlob from "../../helpers/dataURItoBlob";
 import { uploadImages } from "../../functions/uploadImages";
+
 export default function CreatePostPopup({
   user,
   setVisible,

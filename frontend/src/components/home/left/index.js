@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ArrowDown1 } from "../../../svg";
 import { useState } from "react";
 import Shortcut from "./Shortcut";
+
 export default function LeftHome({ user }) {
   const [visible, setVisible] = useState(false);
   return (

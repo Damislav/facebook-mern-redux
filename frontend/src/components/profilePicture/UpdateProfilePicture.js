@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useCallback, useRef, useState } from "react";
 import Cropper from "react-easy-crop";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +7,7 @@ import { updateprofilePicture } from "../../functions/user";
 import getCroppedImg from "../../helpers/getCroppedImg";
 import PulseLoader from "react-spinners/PulseLoader";
 import Cookies from "js-cookie";
+
 export default function UpdateProfilePicture({
   setImage,
   image,
@@ -23,6 +23,7 @@ export default function UpdateProfilePicture({
   const slider = useRef(null);
   const { user } = useSelector((state) => ({ ...state }));
   const [loading, setLoading] = useState(false);
+
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);

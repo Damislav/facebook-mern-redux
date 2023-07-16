@@ -1,17 +1,25 @@
+import { useEffect, useReducer, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
+
+//components
+import CreatePostPopup from "./components/createPostPopup";
+
+//pages
+import Activate from "./pages/home/activate";
+import Reset from "./pages/reset";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
 import Home from "./pages/home";
+import Friends from "./pages/friends";
+
+//routes
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
-import { useSelector } from "react-redux";
-import Activate from "./pages/home/activate";
-import Reset from "./pages/reset";
-import CreatePostPopup from "./components/createPostPopup";
-import { useEffect, useReducer, useState } from "react";
-import axios from "axios";
+
+//fnctions
 import { postsReducer } from "./functions/reducers";
-import Friends from "./pages/friends";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -21,9 +29,11 @@ function App() {
     posts: [],
     error: "",
   });
+
   useEffect(() => {
-    getAllPosts();
+    // getAllPosts();
   }, []);
+
   const getAllPosts = async () => {
     try {
       dispatch({
@@ -50,7 +60,7 @@ function App() {
   };
 
   return (
-    <div className={darkTheme && 'dark'}>
+    <div className={darkTheme && "dark"}>
       {visible && (
         <CreatePostPopup
           user={user}

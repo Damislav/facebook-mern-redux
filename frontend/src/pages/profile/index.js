@@ -6,7 +6,7 @@ import { profileReducer } from "../../functions/reducers";
 import Header from "../../components/header";
 import "./style.css";
 import Cover from "./Cover";
-import ProfielPictureInfos from "./ProfielPictureInfos";
+import ProfilePictureInfos from "./ProfilePictureInfos";
 import ProfileMenu from "./ProfileMenu";
 import PplYouMayKnow from "./PplYouMayKnow";
 import CreatePost from "../../components/createPost";
@@ -20,6 +20,7 @@ import CreatePostPopup from "../../components/createPostPopup";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { HashLoader } from "react-spinners";
+
 export default function Profile({ getAllPosts }) {
   const [visible, setVisible] = useState(false);
   const { username } = useParams();
@@ -93,6 +94,7 @@ export default function Profile({ getAllPosts }) {
   const [height, setHeight] = useState();
   const [leftHeight, setLeftHeight] = useState();
   const [scrollHeight, setScrollHeight] = useState();
+
   useEffect(() => {
     setHeight(profileTop.current.clientHeight + 300);
     setLeftHeight(leftSide.current.clientHeight);
@@ -101,6 +103,7 @@ export default function Profile({ getAllPosts }) {
       window.addEventListener("scroll", getScroll, { passive: true });
     };
   }, [loading, scrollHeight]);
+
   const check = useMediaQuery({
     query: "(min-width:901px)",
   });
@@ -213,7 +216,7 @@ export default function Profile({ getAllPosts }) {
                 visitor={visitor}
                 photos={photos.resources}
               />
-              <ProfielPictureInfos
+              <ProfilePictureInfos
                 profile={profile}
                 visitor={visitor}
                 photos={photos.resources}

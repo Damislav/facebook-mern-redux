@@ -10,6 +10,7 @@ exports.createPost = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
 exports.getAllPosts = async (req, res) => {
   try {
     const followingTemp = await User.findById(req.user.id).select("following");

@@ -5,6 +5,7 @@ import HelpSupport from "./HelpSupport";
 import SettingsPrivacy from "./SettingsPrivacy";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
+
 export default function UserMenu({ user }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();

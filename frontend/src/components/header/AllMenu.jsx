@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { menu, create } from "../../data/allMenu";
 import useClickOutside from "../../helpers/clickOutside";
 import AllMenuItem from "./AllMenuItem";
+
 export default function AllMenu() {
   return (
     <div className="all_menu">

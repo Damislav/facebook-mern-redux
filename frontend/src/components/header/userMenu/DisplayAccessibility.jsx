@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
+
 export default function DisplayAccessibility({ setVisible }) {
   const dispatch = useDispatch();
   const { darkTheme } = useSelector((state) => ({ ...state }));

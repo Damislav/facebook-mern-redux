@@ -1,3 +1,4 @@
+import "./style.css";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import CreatePost from "../../components/createPost";
@@ -7,7 +8,7 @@ import RightHome from "../../components/home/right";
 import SendVerification from "../../components/home/sendVerification";
 import Stories from "../../components/home/stories";
 import Post from "../../components/post";
-import "./style.css";
+
 export default function Home({ setVisible, posts, loading, getAllPosts }) {
   const { user } = useSelector((state) => ({ ...state }));
   const middle = useRef(null);
