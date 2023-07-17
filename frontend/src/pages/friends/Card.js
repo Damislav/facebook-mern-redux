@@ -10,19 +10,19 @@ export default function Card({ userr, type, getData }) {
   const { user } = useSelector((state) => ({ ...state }));
   const cancelRequestHandler = async (userId) => {
     const res = await cancelRequest(userId, user.token);
-    if (res == "ok") {
+    if (res === "ok") {
       getData();
     }
   };
   const confirmHandler = async (userId) => {
     const res = await acceptRequest(userId, user.token);
-    if (res == "ok") {
+    if (res === "ok") {
       getData();
     }
   };
   const deleteHandler = async (userId) => {
     const res = await deleteRequest(userId, user.token);
-    if (res == "ok") {
+    if (res === "ok") {
       getData();
     }
   };

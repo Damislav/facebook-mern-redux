@@ -1,10 +1,16 @@
 import Cookies from "js-cookie";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../../redux/features/userSlice";
 
 export default function DisplayAccessibility({ setVisible }) {
   const dispatch = useDispatch();
+  const [first, setfirst] = useState("");
   const { darkTheme } = useSelector((state) => ({ ...state }));
+  const users = useSelector((state) => state.users.value);
 
+  console.log(users);
+  // console.log(darkTheme);
   return (
     <div className="absolute_wrap">
       <div className="absolute_wrap_header">
@@ -34,7 +40,8 @@ export default function DisplayAccessibility({ setVisible }) {
         htmlFor="darkOff"
         onClick={() => {
           Cookies.set("darkTheme", false);
-          dispatch({ type: "LIGHT" });
+          // dispatch({ type: "LIGHT" });
+          dispatch(login({ name: "ivan", age: 25, email: "damislav@net.hr" }));
         }}
         className="hover1"
       >
@@ -48,7 +55,7 @@ export default function DisplayAccessibility({ setVisible }) {
       <label
         onClick={() => {
           Cookies.set("darkTheme", true);
-          dispatch({ type: "DARK" });
+          // dispatch({ type: "DARK" });
         }}
         htmlFor="darkOn"
         className="hover1"

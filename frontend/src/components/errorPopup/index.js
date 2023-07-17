@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import useClickOutside from "../../helpers/clickOutside";
 
 export default function ErrorPopup() {
-  const dispatch = useDispatch();
   const errorPopup = useRef(null);
   const { error } = useSelector((state) => ({ ...state }));
   useClickOutside(errorPopup, () => {});

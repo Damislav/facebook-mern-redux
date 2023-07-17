@@ -18,6 +18,7 @@ export default function Friends() {
   });
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const getData = async () => {
     dispatch({ type: "FRIENDS_REQUEST" });

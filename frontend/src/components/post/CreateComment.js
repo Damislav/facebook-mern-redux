@@ -4,6 +4,7 @@ import { comment } from "../../functions/post";
 import { uploadImages } from "../../functions/uploadImages";
 import dataURItoBlob from "../../helpers/dataURItoBlob";
 import { ClipLoader } from "react-spinners";
+
 export default function CreateComment({ user, postId, setComments, setCount }) {
   const [picker, setPicker] = useState(false);
   const [text, setText] = useState("");
@@ -13,6 +14,7 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
   const [loading, setLoading] = useState(false);
   const textRef = useRef(null);
   const imgInput = useRef(null);
+
   useEffect(() => {
     textRef.current.selectionEnd = cursorPosition;
   }, [cursorPosition]);

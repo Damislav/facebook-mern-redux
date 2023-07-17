@@ -21,6 +21,7 @@ export default function Activate() {
   const { token } = useParams();
   useEffect(() => {
     activateAccount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const activateAccount = async () => {
     try {

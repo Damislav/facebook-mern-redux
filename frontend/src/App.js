@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 //components
@@ -24,14 +24,16 @@ import { postsReducer } from "./functions/reducers";
 function App() {
   const [visible, setVisible] = useState(false);
   const { user, darkTheme } = useSelector((state) => ({ ...state }));
-  const [{ loading, error, posts }, dispatch] = useReducer(postsReducer, {
+
+  const [{ loading, posts, error }, dispatch] = useReducer(postsReducer, {
     loading: false,
     posts: [],
     error: "",
   });
 
   useEffect(() => {
-    // getAllPosts();
+    getAllPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getAllPosts = async () => {
