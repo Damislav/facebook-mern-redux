@@ -23,11 +23,12 @@ import { HashLoader } from "react-spinners";
 import { memoizedUserSelector } from "../../redux/features/selectors";
 
 export default function Profile({ getAllPosts }) {
-  const [visible, setVisible] = useState(false);
   const { username } = useParams();
   const navigate = useNavigate();
-  const user = useSelector(memoizedUserSelector);
+  const [visible, setVisible] = useState(false);
   const [photos, setPhotos] = useState({});
+  const user = useSelector(memoizedUserSelector);
+
   var userName = username === undefined ? user.username : username;
 
   const [{ loading, error, profile }, dispatch] = useReducer(profileReducer, {
@@ -178,6 +179,7 @@ export default function Profile({ getAllPosts }) {
                       {Array.from(new Array(6), (val, i) => i + 1).map(
                         (id, i) => (
                           <Skeleton
+                            key={i} // Add a unique key prop here, for example, using the index 'i'
                             circle
                             height="32px"
                             width="32px"

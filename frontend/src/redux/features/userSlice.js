@@ -1,20 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialStateValue = { name: "", age: 0, email: "" };
+import Cookies from "js-cookie";
 
-export const usersSlice = createSlice({
+// Get the initial user value from cookies
+const initialState = Cookies.get("user")
+  ? JSON.parse(Cookies.get("user"))
+  : null;
+
+const userSlice = createSlice({
   name: "user",
-  initialState: { value: initialStateValue },
+  initialState,
   reducers: {
-    login: (state, action) => {
-      state.value = action.payload;
+    loginUser: (state, action) => {
+      return action.payload;
     },
-
     logout: (state) => {
-      state.value = initialStateValue;
+      return null;
+    },
+    updatePicture: (state, action) => {
+      return { ...state, picture: action.payload };
+    },
+    verify: (state, action) => {
+      return { ...state, verified: action.payload };
     },
   },
 });
 
-export const { login, logout } = usersSlice.actions;
+export const { loginUser, logout, updatePicture, verify } = userSlice.actions;
 
-export default usersSlice.reducer;
+export default userSlice.reducer;

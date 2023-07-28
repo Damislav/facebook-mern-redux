@@ -7,7 +7,7 @@ exports.reactPost = async (req, res) => {
     const { postId, react } = req.body;
     const check = await React.findOne({
       postRef: postId,
-      reactBy: mongoose.Types.ObjectId(req.user.id),
+      reactBy: new mongoose.Types.ObjectId(req.user.id),
     });
     if (check == null) {
       const newReact = new React({

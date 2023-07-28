@@ -18,6 +18,7 @@ export default function PostMenu({
 }) {
   const [test, setTest] = useState(postUserId === userId ? true : false);
   const menu = useRef(null);
+
   useOnClickOutside(menu, () => setShowMenu(false));
   const saveHandler = async () => {
     savePost(postId, token);

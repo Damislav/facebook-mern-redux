@@ -1,12 +1,13 @@
 import { useCallback, useRef, useState } from "react";
-import Cropper from "react-easy-crop";
+import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
+import Cropper from "react-easy-crop";
 import { createPost } from "../../functions/post";
 import { uploadImages } from "../../functions/uploadImages";
 import { updateprofilePicture } from "../../functions/user";
 import getCroppedImg from "../../helpers/getCroppedImg";
 import PulseLoader from "react-spinners/PulseLoader";
-import Cookies from "js-cookie";
+import { memoizedUserSelector } from "../../redux/features/selectors";
 
 export default function UpdateProfilePicture({
   setImage,
@@ -21,20 +22,23 @@ export default function UpdateProfilePicture({
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const slider = useRef(null);
-  const { user } = useSelector((state) => ({ ...state }));
+  const user = useSelector(memoizedUserSelector);
   const [loading, setLoading] = useState(false);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
+
   const zoomIn = () => {
     slider.current.stepUp();
     setZoom(slider.current.value);
   };
+
   const zoomOut = () => {
     slider.current.stepDown();
     setZoom(slider.current.value);
   };
+
   const getCroppedImage = useCallback(
     async (show) => {
       try {
@@ -52,6 +56,7 @@ export default function UpdateProfilePicture({
     },
     [croppedAreaPixels]
   );
+
   const updateProfielPicture = async () => {
     try {
       setLoading(true);
@@ -106,6 +111,7 @@ export default function UpdateProfilePicture({
       setError(error.response.data.message);
     }
   };
+
   return (
     <div className="postBox update_img">
       <div className="box_header">

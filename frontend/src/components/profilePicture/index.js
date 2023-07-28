@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import "./style.css";
 import UpdateProfilePicture from "./UpdateProfilePicture";
 import useOnClickOutside from "../../helpers/clickOutside";
-import { photosReducer } from "../../functions/reducers";
+// import { photosReducer } from "../../functions/reducers";
 import { useSelector } from "react-redux";
 import { memoizedUserSelector } from "../../redux/features/selectors";
 
@@ -13,6 +13,7 @@ export default function ProfilePicture({ username, setShow, pRef, photos }) {
   const refInput = useRef(null);
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
+
   const handleImage = (e) => {
     let file = e.target.files[0];
     if (
@@ -75,7 +76,7 @@ export default function ProfilePicture({ username, setShow, pRef, photos }) {
           </div>
         )}
         <div className="old_pictures_wrap scrollbar">
-          <h4>your profile pictures</h4>
+          <h4 key="profile-pictures-heading">your profile pictures</h4>
           <div className="old_pictures">
             {photos
               .filter(

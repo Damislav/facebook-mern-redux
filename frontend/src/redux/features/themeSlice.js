@@ -20,9 +20,12 @@ const themeSlice = createSlice({
     dark: (state, action) => {
       state.value = action.payload;
     },
+    setCompactMode: (state, action) => {
+      state.compactMode = action.payload;
+    },
   },
 });
 
-export const { light, dark } = themeSlice.actions;
+export const { light, dark, setCompactMode } = themeSlice.actions;
 
 export default themeSlice.reducer;

@@ -8,6 +8,8 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../redux/features/userSlice";
+
 const loginInfos = {
   email: "",
   password: "",
@@ -29,6 +31,7 @@ export default function LoginForm({ setVisible }) {
       .max(100),
     password: Yup.string().required("Password is required"),
   });
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -42,7 +45,7 @@ export default function LoginForm({ setVisible }) {
           password,
         }
       );
-      dispatch({ type: "LOGIN", payload: data });
+      dispatch(loginUser(data));
       Cookies.set("user", JSON.stringify(data));
       navigate("/");
     } catch (error) {
@@ -50,6 +53,7 @@ export default function LoginForm({ setVisible }) {
       setError(error.response.data.message);
     }
   };
+
   return (
     <div className="login_wrap">
       <div className="login_1">

@@ -8,6 +8,7 @@ import CreateComment from "./CreateComment";
 import PostMenu from "./PostMenu";
 import { comment, getReacts, reactPost } from "../../functions/post";
 import Comment from "./Comment";
+
 export default function Post({ post, user, profile }) {
   const [visible, setVisible] = useState(false);
   const [showMenu, setShowMenu] = useState(false);

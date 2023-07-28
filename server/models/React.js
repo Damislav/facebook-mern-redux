@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-const { ObjectId } = mongoose.Schema;
+// Correct usage
+const { ObjectId } = mongoose.Schema.Types;
 
 const reactSchema = new mongoose.Schema({
   react: {
@@ -9,7 +10,7 @@ const reactSchema = new mongoose.Schema({
     required: true,
   },
   postRef: {
-    type: ObjectId,
+    type: ObjectId, // Use ObjectId directly
     ref: "Post",
   },
   reactBy: {

@@ -23,10 +23,14 @@ export default function Home({ setVisible, posts, loading, getAllPosts }) {
     <div className="home" style={{ height: `${height + 150}px` }}>
       <Header page="home" getAllPosts={getAllPosts} />
       <LeftHome user={user} />
+
       <div className="home_middle" ref={middle}>
         <Stories />
+
         {user.verified === false && <SendVerification user={user} />}
+
         <CreatePost user={user} setVisible={setVisible} />
+
         <div className="posts">
           {posts.map((post, i) => (
             <Post key={i} post={post} user={user} />
