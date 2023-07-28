@@ -20,12 +20,13 @@ import CreatePostPopup from "../../components/createPostPopup";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { HashLoader } from "react-spinners";
+import { memoizedUserSelector } from "../../redux/features/selectors";
 
 export default function Profile({ getAllPosts }) {
   const [visible, setVisible] = useState(false);
   const { username } = useParams();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => ({ ...state }));
+  const user = useSelector(memoizedUserSelector);
   const [photos, setPhotos] = useState({});
   var userName = username === undefined ? user.username : username;
 
@@ -34,9 +35,11 @@ export default function Profile({ getAllPosts }) {
     profile: {},
     error: "",
   });
+
   useEffect(() => {
     getProfile();
   }, [userName]);
+
   useEffect(() => {
     setOthername(profile?.details?.otherName);
   }, [profile]);

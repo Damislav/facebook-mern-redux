@@ -10,6 +10,7 @@ import {
   unfollow,
   unfriend,
 } from "../../functions/user";
+import { memoizedUserSelector } from "../../redux/features/selectors";
 
 export default function Friendship({ friendshipp, profileid }) {
   const [friendship, setFriendship] = useState(friendshipp);
@@ -22,7 +23,7 @@ export default function Friendship({ friendshipp, profileid }) {
   const menu1 = useRef(null);
   useClickOutside(menu, () => setFriendsMenu(false));
   useClickOutside(menu1, () => setRespondMenu(false));
-  const { user } = useSelector((state) => ({ ...state }));
+  const user = useSelector(memoizedUserSelector);
   const addFriendHandler = async () => {
     setFriendship({ ...friendship, requestSent: true, following: true });
     await addFriend(profileid, user.token);

@@ -7,10 +7,10 @@ export function themeReducer(
   action
 ) {
   switch (action.type) {
-    case "DARK":
-      return true;
     case "LIGHT":
       return false;
+    case "DARK":
+      return true;
 
     default:
       return state;

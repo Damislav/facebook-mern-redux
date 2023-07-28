@@ -1,9 +1,10 @@
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import useClickOutside from "../../helpers/clickOutside";
+import { memoizedUserSelector } from "../../redux/features/selectors";
 
 export default function OldCovers({ photos, setCoverPicture, setShow }) {
-  const { user } = useSelector((state) => ({ ...state }));
+  const user = useSelector(memoizedUserSelector);
   const Ref = useRef(null);
   useClickOutside(Ref, () => setShow(false));
   return (

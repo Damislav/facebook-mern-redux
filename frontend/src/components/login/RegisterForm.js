@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 export default function RegisterForm({ setVisible }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const userInfos = {
     first_name: "",
     last_name: "",

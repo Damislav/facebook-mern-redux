@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Detail from "./Detail";
 import useOnCLickOutside from "../../helpers/clickOutside";
+
 export default function EditDetails({
   details,
   handleChange,
@@ -9,6 +10,7 @@ export default function EditDetails({
   setVisible,
 }) {
   const modal = useRef(null);
+
   useOnCLickOutside(modal, () => setVisible(false));
   return (
     <div className="blur">

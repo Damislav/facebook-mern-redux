@@ -8,9 +8,10 @@ import RightHome from "../../components/home/right";
 import SendVerification from "../../components/home/sendVerification";
 import Stories from "../../components/home/stories";
 import Post from "../../components/post";
+import { memoizedUserSelector } from "../../redux/features/selectors";
 
 export default function Home({ setVisible, posts, loading, getAllPosts }) {
-  const { user } = useSelector((state) => ({ ...state }));
+  const user = useSelector(memoizedUserSelector);
   const middle = useRef(null);
   const [height, setHeight] = useState();
 

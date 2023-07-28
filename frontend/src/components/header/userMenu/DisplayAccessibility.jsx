@@ -1,29 +1,21 @@
 import Cookies from "js-cookie";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../../redux/features/userSlice";
+import { dark, light } from "../../../redux/features/themeSlice";
+import { memoizedDarkThemeSelector } from "../../../redux/features/selectors";
 
 export default function DisplayAccessibility({ setVisible }) {
   const dispatch = useDispatch();
-  const [first, setfirst] = useState("");
-  const { darkTheme } = useSelector((state) => ({ ...state }));
-  const users = useSelector((state) => state.users.value);
+  const darkTheme = useSelector(memoizedDarkThemeSelector);
 
-  console.log(users);
-  // console.log(darkTheme);
+  const handleToggleDarkMode = () => {
+    const newDarkMode = !darkTheme.value;
+    dispatch(newDarkMode ? dark(true) : light(false));
+    Cookies.set("darkTheme", newDarkMode);
+  };
+
   return (
     <div className="absolute_wrap">
-      <div className="absolute_wrap_header">
-        <div
-          className="circle hover1"
-          onClick={() => {
-            setVisible(0);
-          }}
-        >
-          <i className="arrow_back_icon"></i>
-        </div>
-        Display & Accessibility
-      </div>
+      <div className="absolute_wrap_header">{/* ... */}</div>
       <div className="mmenu_main">
         <div className="small_circle" style={{ width: "50px" }}>
           <i className="dark_filled_icon"></i>
@@ -36,65 +28,26 @@ export default function DisplayAccessibility({ setVisible }) {
           </span>
         </div>
       </div>
-      <label
-        htmlFor="darkOff"
-        onClick={() => {
-          Cookies.set("darkTheme", false);
-          // dispatch({ type: "LIGHT" });
-          dispatch(login({ name: "ivan", age: 25, email: "damislav@net.hr" }));
-        }}
-        className="hover1"
-      >
+      <label htmlFor="darkOff" className="hover1">
         <span>Off</span>
-        {darkTheme ? (
-          <input type="radio" name="dark" id="darkOff" />
-        ) : (
-          <input type="radio" name="dark" id="darkOff" checked />
-        )}
+        <input
+          type="radio"
+          name="dark"
+          id="darkOff"
+          checked={!darkTheme.value}
+          onChange={handleToggleDarkMode}
+        />
       </label>
-      <label
-        onClick={() => {
-          Cookies.set("darkTheme", true);
-          // dispatch({ type: "DARK" });
-        }}
-        htmlFor="darkOn"
-        className="hover1"
-      >
+      <label htmlFor="darkOn" className="hover1">
         <span>On</span>
-        {darkTheme ? (
-          <input type="radio" name="dark" id="darkOn" checked />
-        ) : (
-          <input type="radio" name="dark" id="darkOn" />
-        )}
+        <input
+          type="radio"
+          name="dark"
+          id="darkOn"
+          checked={darkTheme.value}
+          onChange={handleToggleDarkMode}
+        />
       </label>
-      <div className="mmenu_main">
-        <div className="small_circle" style={{ width: "50px" }}>
-          <i className="compact_icon"></i>
-        </div>
-        <div className="mmenu_col">
-          <span className="mmenu_span1">Compact mode</span>
-          <span className="mmenu_span2">
-            Make your font size smaller so more content can fit on the screen.
-          </span>
-        </div>
-      </div>
-      <label htmlFor="compactOff" className="hover1">
-        <span>Off</span>
-        <input type="radio" name="compact" id="compactOff" />
-      </label>
-      <label htmlFor="compactOn" className="hover1">
-        <span>On</span>
-        <input type="radio" name="compact" id="compactOn" />
-      </label>
-      <div className="mmenu_item hover3">
-        <div className="small_circle">
-          <i className="keyboard_icon"></i>
-        </div>
-        <span>Keyboard</span>
-        <div className="rArrow">
-          <i className="right_icon"></i>
-        </div>
-      </div>
     </div>
   );
 }

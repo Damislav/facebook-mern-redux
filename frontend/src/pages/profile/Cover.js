@@ -8,19 +8,21 @@ import { updateCover } from "../../functions/user";
 import { createPost } from "../../functions/post";
 import PulseLoader from "react-spinners/PulseLoader";
 import OldCovers from "./OldCovers";
+import { memoizedUserSelector } from "../../redux/features/selectors";
 
 export default function Cover({ cover, visitor, photos }) {
   const [showCoverMneu, setShowCoverMenu] = useState(false);
   const [coverPicture, setCoverPicture] = useState("");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
-  const { user } = useSelector((state) => ({ ...state }));
+  const user = useSelector(memoizedUserSelector);
   const menuRef = useRef(null);
   const refInput = useRef(null);
   const cRef = useRef(null);
+  const [error, setError] = useState("");
 
   useClickOutside(menuRef, () => setShowCoverMenu(false));
-  const [error, setError] = useState("");
+
   const handleImage = (e) => {
     let file = e.target.files[0];
     if (
@@ -44,12 +46,15 @@ export default function Cover({ cover, visitor, photos }) {
       setCoverPicture(event.target.result);
     };
   };
+
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
+
   const getCroppedImage = useCallback(
     async (show) => {
       try {

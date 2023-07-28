@@ -10,11 +10,12 @@ import ActivateForm from "./ActivateForm";
 import "./style.css";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { memoizedUserSelector } from "../../redux/features/selectors";
 
 export default function Activate() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useSelector((user) => ({ ...user }));
+  const user = useSelector(memoizedUserSelector);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);

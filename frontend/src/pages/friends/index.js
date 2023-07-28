@@ -6,9 +6,10 @@ import Header from "../../components/header";
 import { friendspage } from "../../functions/reducers";
 import { getFriendsPageInfos } from "../../functions/user";
 import Card from "./Card";
+import { memoizedUserSelector } from "../../redux/features/selectors";
 
 export default function Friends() {
-  const { user } = useSelector((state) => ({ ...state }));
+  const user = useSelector(memoizedUserSelector);
   const { type } = useParams();
 
   const [{ loading, error, data }, dispatch] = useReducer(friendspage, {
@@ -16,10 +17,12 @@ export default function Friends() {
     data: {},
     error: "",
   });
+
   useEffect(() => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const getData = async () => {
     dispatch({ type: "FRIENDS_REQUEST" });
     const data = await getFriendsPageInfos(user.token);

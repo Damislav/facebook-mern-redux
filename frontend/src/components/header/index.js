@@ -21,9 +21,10 @@ import { useRef, useState } from "react";
 import AllMenu from "./AllMenu";
 import useClickOutside from "../../helpers/clickOutside";
 import UserMenu from "./userMenu";
+import { memoizedUserSelector } from "../../redux/features/selectors";
 
 export default function Header({ page, getAllPosts }) {
-  const { user } = useSelector((user) => ({ ...user }));
+  const user = useSelector(memoizedUserSelector);
   const color = "#65676b";
   const [showSearchMenu, setShowSearchMenu] = useState(false);
   const [showAllMenu, setShowAllMenu] = useState(false);

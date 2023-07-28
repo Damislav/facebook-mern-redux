@@ -17,6 +17,7 @@ export default function LoginForm({ setVisible }) {
   const navigate = useNavigate();
   const [login, setLogin] = useState(loginInfos);
   const { email, password } = login;
+
   const handleLoginChange = (e) => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
@@ -30,6 +31,7 @@ export default function LoginForm({ setVisible }) {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
   const loginSubmit = async () => {
     try {
       setLoading(true);

@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import useClickOutside from "../../helpers/clickOutside";
 
 export default function ErrorPopup() {
   const errorPopup = useRef(null);
   const { error } = useSelector((state) => ({ ...state }));
+
   useClickOutside(errorPopup, () => {});
   return (
     <div className="blur" id="errorPopup">

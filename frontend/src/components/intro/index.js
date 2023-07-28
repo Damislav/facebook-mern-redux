@@ -4,14 +4,18 @@ import "./style.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import EditDetails from "./EditDetails";
+import { memoizedUserSelector } from "../../redux/features/selectors";
+
 export default function Intro({ detailss, visitor, setOthername }) {
-  const { user } = useSelector((state) => ({ ...state }));
+  const user = useSelector(memoizedUserSelector);
   const [details, setDetails] = useState();
   const [visible, setVisible] = useState(false);
+
   useEffect(() => {
     setDetails(detailss);
     setInfos(detailss);
   }, [detailss]);
+
   const initial = {
     bio: details?.bio ? details.bio : "",
     otherName: details?.otherName ? details.otherName : "",
@@ -54,6 +58,7 @@ export default function Intro({ detailss, visitor, setOthername }) {
     setInfos({ ...infos, [name]: value });
     setMax(100 - e.target.value.length);
   };
+
   return (
     <div className="profile_card">
       <div className="profile_card_header">Intro</div>
@@ -144,6 +149,7 @@ export default function Intro({ detailss, visitor, setOthername }) {
           <a
             href={`https://www.instagram.com/${details?.instagram}`}
             target="_blank"
+            rel="noreferrer"
           >
             {details?.instagram}
           </a>
